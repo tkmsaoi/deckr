@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    meta name="viewport" content="width=1024, user-scalable=no"
+
+    title = @title || "Presentation"
+
+    / Required stylesheet
+    link rel="stylesheet" type="text/css" href="#{{deck.core.css.url}}"
+
+    / Extension CSS files
+    - deck.extensions.each do |extension|
+      - if extension.css.exist?
+        link rel="stylesheet" type="text/css" href="#{{extension.css.url}}"
+
+    / Style theme
+    - if deck.style
+      link rel="stylesheet" type="text/css" href="#{{deck.style.url}}"
+
+    / Transition theme
+    - if deck.transition
+      link rel="stylesheet" type="text/css" href="#{{deck.transition.url}}"
+
+    / Required Modernizr file
+    script type="text/javascript" src="#{{deck.resource('modernizr.custom.js').url}}"
+
+  body.deck-container
+    / Your presentation
+    == yield
+
+    / Extension snippets
+    - deck.extensions.each do |extension|
+      == extension.html.content
+
+    / Required JS files
+    script type="text/javascript" src="#{{deck.resource('jquery-1.7.2.min.js').url}}"
+    script type="text/javascript" src="#{{deck.core.js.url}}"
+
+    / Extension JS files
+    - deck.extensions.each do |extension|
+      - if extension.js.exist?
+        script type="text/javascript" src="#{{extension.js.url}}"
+
+    / Initialize the deck
+    javascript:
+      jQuery(function($) { $.deck('.slide') });
