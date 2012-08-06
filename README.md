@@ -10,7 +10,11 @@ Deckr is a utility for [deck.js](http://imakewebthings.com/deck.js/).
 
 ## Installation
 
-TODO
+    $ gem install deckr
+
+If you don't have Bundler, run the following command.
+
+    $ gem install bundler
 
 
 ## Usage
@@ -21,6 +25,7 @@ TODO
     $ bundle exec rackup
 
 Visit http://localhost:9292/ in your web browser. You should see the example slides.
+
 When writing slides, edit presentation files under the "views" directory.
 
 
